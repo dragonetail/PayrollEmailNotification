@@ -1,6 +1,5 @@
 package com.github.dragonetail.payroll.emailnotification.payrolls.service;
 
-import com.github.dragonetail.payroll.emailnotification.employees.bean.Employee;
 import com.github.dragonetail.payroll.emailnotification.payrolls.bean.Payroll;
 import org.apache.poi.hssf.usermodel.HSSFFormulaEvaluator;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -15,6 +14,7 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
 import java.io.*;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +35,8 @@ public class PayrollService {
 
         List<Payroll> payrolls = new ArrayList<>();
         try {
-            File templateFile = ResourceUtils.getFile(templateFileLocation);
-            try (InputStream inp = new FileInputStream(templateFile)) {
+            URL templateFile = ResourceUtils.getURL(templateFileLocation);
+            try (InputStream inp = templateFile.openStream()) {
                 Workbook wb = WorkbookFactory.create(inp);
                 Sheet sheet = wb.getSheetAt(0);
 
@@ -87,11 +87,11 @@ public class PayrollService {
 
                 for (int i = 0; i < payrolls.size() - 1; i++) {
                     Payroll left = payrolls.get(i);
-                    for (int j = i; j < payrolls.size(); j++) {
+                    for (int j = i + 1; j < payrolls.size(); j++) {
                         Payroll right = payrolls.get(j);
                         if ((left.getId() == right.getId()) ||
                                 left.getNo().equals(right.getNo())) {
-                            throw new IllegalStateException("数据有重复：#" + left.getId() + "（" + left.getNo() + "）" );
+                            throw new IllegalStateException("数据有重复：#" + left.getId() + "（" + left.getNo() + "）");
                         }
                     }
                 }

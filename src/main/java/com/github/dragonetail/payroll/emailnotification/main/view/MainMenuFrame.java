@@ -47,5 +47,7 @@ public class MainMenuFrame extends JFrame {
 
         add(employeesControllerContentPane, BorderLayout.WEST);
         add(payrollsControllerContentPane, BorderLayout.CENTER);
+
+        payrollsControllerContentPane.requestFocus();
     }
 }

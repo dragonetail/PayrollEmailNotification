@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>工资单</title>
+    <style type="text/css">
+        body {
+            font-family: SimSun;
+        }
+
+        /* A4纸 */
+        /* @page{size:210mm*297mm} */
+        @page{size:a4}
+
+        p {
+            font-size: 80%;
+        }
+
+        div {
+            margin: 30px auto;
+            width: 980px;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        table, th, td{
+            border: 1px solid black;
+        }
+        th {
+            width: 120px;
+            text-align:center;
+            padding: 3px 10px 3px 10px;
+            background: rgb(200,200,200);
+        }
+        td {
+            width: 240px;
+            text-align:right;
+            padding: 3px 10px 3px 10px;
+        }
+        td.basic {
+            text-align:center;
+        }
+        td.deduction {
+            color: red;
+        }
+        td.primary {
+            font-size: 110%;
+            font-weight: bold;
+            /*background: rgb(137, 207, 240);*/
+            background: rgb(188, 233, 255);
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <span><span th:text="*{payrollMonth}"></span>工资单</span>
+    <table style="border: 1px solid black;">
+        <tbody>
+        <tr>
+            <th>工号</th>
+            <td class="basic" th:text="*{payroll.no}"></td>
+        </tr>
+        <tr>
+            <th>姓名</th>
+            <td class="basic" th:text="*{payroll.name}"></td>
+        </tr>
+        <tr>
+            <th>部门</th>
+            <td class="basic" th:text="*{payroll.department}"></td>
+        </tr>
+        <tr>
+            <th>级别</th>
+            <td class="basic" th:text="*{payroll.level}"></td>
+        </tr>
+        <tr>
+            <th>基本工资</th>
+            <td th:text="*{payroll.baseSalary}"></td>
+        </tr>
+        <tr>
+            <th>职位工资</th>
+            <td th:text="*{payroll.jobSalary}"></td>
+        </tr>
+        <tr>
+            <th>评价工资</th>
+            <td th:text="*{payroll.awardSalary}"></td>
+        </tr>
+        <tr>
+            <th>其他应发</th>
+            <td th:text="*{payroll.otherSalary}"></td>
+        </tr>
+        <tr>
+            <th>社会保险</th>
+            <td class="deduction" th:text="*{payroll.socialInsurance}"></td>
+        </tr>
+        <tr>
+            <th>住房公积金</th>
+            <td class="deduction" th:text="*{payroll.housingFund}"></td>
+        </tr>
+        <tr>
+            <th>专项附加扣除</th>
+            <td class="deduction" th:text="*{payroll.specialAdditionalDeduction}"></td>
+        </tr>
+        <tr>
+            <th>请假</th>
+            <td class="deduction" th:text="*{payroll.leavingDeduction}"></td>
+        </tr>
+        <tr>
+            <th>其他应扣</th>
+            <td class="deduction" th:text="*{payroll.otherDeduction}"></td>
+        </tr>
+        <tr>
+            <th>税前应付</th>
+            <td th:text="*{payroll.givingWithTax}"></td>
+        </tr>
+        <tr>
+            <th>个人所得税</th>
+            <td class="deduction" th:text="*{payroll.tax}"></td>
+        </tr>
+        <tr>
+            <th>实发金额</th>
+            <td class="primary" th:text="*{payroll.giving}"></td>
+        </tr>
+        <tr>
+            <th>备注</th>
+            <td th:text="*{payroll.remarks}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <p>
+    制表日期： <span th:text="*{today}"></span><br/>
+    综合管理部人力资源<br/>
+    西安华信智慧数字科技有限公司<br/>
+    </p>
+    </div>
+
+
+</body>
+</html>
+
+
+

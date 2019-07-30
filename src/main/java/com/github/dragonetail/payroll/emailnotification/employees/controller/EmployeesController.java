@@ -45,7 +45,7 @@ public class EmployeesController extends AbstractFrameController {
     @Override
     public void prepareAndOpenFrame() {
         loadEmployees();
-        showClientsFrame();
+        showFrame();
     }
 
     public Container getContentPane() {
@@ -60,7 +60,7 @@ public class EmployeesController extends AbstractFrameController {
         employeeTableModel.addEntities(employees);
     }
 
-    private void showClientsFrame() {
+    private void showFrame() {
         employeesFrame.setVisible(true);
     }
 

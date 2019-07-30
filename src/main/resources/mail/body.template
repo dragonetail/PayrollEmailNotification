@@ -1,0 +1,31 @@
+<html>
+<body>
+    <p>
+    <span th:text="*{payroll.name}"></span> 先生/女士：<br/>
+    </p>
+    <p style="text-indent:2em">
+    感谢您的辛勤工作！<br/>
+    </p>
+    <p style="text-indent:2em">
+    <span th:text="*{payrollMonth}"></span>工资明细请查收附件，如有疑问，请联系我。
+    </p>
+    <p style="text-indent:2em; font-size: 120%; font-wight: bold;">
+    薪资为保密信息，请确保其隐私性。
+    </p>
+    <p style="text-indent:2em">
+    备注:
+    </p>
+    <div style="padding-left:4em;">
+    自2019年1月1日起，工资薪金所得按照累计预扣法进行个税的预扣预缴。<br/>
+    由于年初累计收入较低，适用较低的预扣率，个税税额较少。<br/>
+    随着累计收入的增加，适用的预扣率逐渐提高，个税税额同步增加。<br/>
+    即一年之内，同样的工薪所得收入，从1月到12月，每月的个税税额会逐步增加。
+    ​</div>
+
+    <p>
+    综合管理部人力资源<br/>
+    <span th:text="*{today}"></span><br/>
+    </p>
+</body>
+</html>
+

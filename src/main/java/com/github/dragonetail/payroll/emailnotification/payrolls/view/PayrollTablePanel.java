@@ -37,8 +37,8 @@ public class PayrollTablePanel extends JPanel {
                 30,
                 80,
                 60,
-                80,//
-                80,//
+                55,//
+                140,//
                 80,//部门
                 40,//级别
                 80,//基本工资

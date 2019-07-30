@@ -11,13 +11,17 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
 import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class EmployeeService {
     private static Logger logger = LoggerFactory.getLogger(EmployeeService.class);
     private List<Employee> employees = new ArrayList<>();
+    private Map<String, Employee> employeeMap = new HashMap<>();
 
     @PostConstruct
     public void init() {
@@ -26,9 +30,10 @@ public class EmployeeService {
 
     public void importFile(String templateFileLocation) {
         List<Employee> employees = new ArrayList<>();
+        Map<String, Employee> employeeMap = new HashMap<>();
         try {
-            File templateFile = ResourceUtils.getFile(templateFileLocation);
-            try (InputStream inp = new FileInputStream(templateFile)) {
+            URL templateFile = ResourceUtils.getURL(templateFileLocation);
+            try (InputStream inp = templateFile.openStream()) {
                 Workbook wb = WorkbookFactory.create(inp);
                 Sheet sheet = wb.getSheetAt(0);
 
@@ -54,12 +59,13 @@ public class EmployeeService {
                     employee.setPassword(getCellStringValue(row, colNo++, id));
 
                     employees.add(employee);
+                    employeeMap.put(employee.getNo(), employee);
                 }
 
 
                 for (int i = 0; i < employees.size() - 1; i++) {
                     Employee left = employees.get(i);
-                    for (int j = i; j < employees.size(); j++) {
+                    for (int j = i + 1; j < employees.size(); j++) {
                         Employee right = employees.get(j);
                         if ((left.getId() == right.getId()) ||
                                 left.getNo().equals(right.getNo()) ||
@@ -70,6 +76,7 @@ public class EmployeeService {
                 }
 
                 this.employees = employees;
+                this.employeeMap = employeeMap;
             }
         } catch (FileNotFoundException e) {
             logger.error("文件找不到。", e);
@@ -94,4 +101,9 @@ public class EmployeeService {
     public List<Employee> findAll() {
         return employees;
     }
+
+    public Employee get(String no) {
+        return employeeMap.get(no);
+    }
+
 }

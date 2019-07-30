@@ -38,7 +38,7 @@ public class EmployeeTablePanel extends JPanel {
                 80,
                 60,
                 160,
-                40);
+                80);
 
         JScrollPane paneWithTable = new JScrollPane(table);
         paneWithTable.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);

@@ -9,8 +9,9 @@ import javax.swing.*;
 public class PayrollTableBtnPanel extends JPanel {
 
     private JButton importBtn;
+    private JButton testEmailBtn;
     private JButton sendEmailBtn;
-    private JButton saveResultBtn;
+//    private JButton saveResultBtn;
     private JButton updateConfigBtn;
 
     public PayrollTableBtnPanel() {
@@ -21,11 +22,14 @@ public class PayrollTableBtnPanel extends JPanel {
         importBtn = new JButton(MessageUtils.getMessage("action.import"));
         add(importBtn);
 
+        testEmailBtn = new JButton(MessageUtils.getMessage("action.testEmail"));
+        add(testEmailBtn);
+
         sendEmailBtn = new JButton(MessageUtils.getMessage("action.sendEmail"));
         add(sendEmailBtn);
 
-        saveResultBtn = new JButton(MessageUtils.getMessage("action.saveResult"));
-        add(saveResultBtn);
+//        saveResultBtn = new JButton(MessageUtils.getMessage("action.saveResult"));
+//        add(saveResultBtn);
 
         updateConfigBtn = new JButton(MessageUtils.getMessage("action.updateConfig"));
         add(updateConfigBtn);
@@ -35,13 +39,17 @@ public class PayrollTableBtnPanel extends JPanel {
         return importBtn;
     }
 
+    public JButton getTestEmailBtn() {
+        return testEmailBtn;
+    }
+
     public JButton getSendEmailBtn() {
         return sendEmailBtn;
     }
 
-    public JButton getSaveResultBtn() {
-        return saveResultBtn;
-    }
+//    public JButton getSaveResultBtn() {
+//        return saveResultBtn;
+//    }
     public JButton getUpdateConfigBtn() {
         return updateConfigBtn;
     }
